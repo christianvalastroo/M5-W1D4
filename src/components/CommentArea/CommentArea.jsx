@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import CommentsList from "../CommentList/CommentList"
 
 const CommentArea = ({ asin }) => {
 
@@ -23,11 +24,8 @@ const CommentArea = ({ asin }) => {
         <div>
             <h5>Recensioni del libro</h5>
 
-            {comments.map((comment) => (
-                <p key={comment._id}>
-                    {comment.comment} : ⭐ {comment.rate}
-                </p>
-            ))}
+            <CommentsList comments={comments} />
+            
         </div>
     )
 }
