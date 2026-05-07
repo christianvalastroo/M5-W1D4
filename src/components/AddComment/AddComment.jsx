@@ -1,7 +1,8 @@
 import { useState } from "react"
 import "./AddComment.css"
 
-const AddComment = ({ asin }) => {
+const AddComment = ({ asin, refreshComments }) => {
+    // Tiene in memoria il nuovo commento prima dell'invio.
     const [newComment, setNewComment] = useState({
         comment: "",
         // elementId deve corrispondere all'asin del libro selezionato.
@@ -12,6 +13,7 @@ const AddComment = ({ asin }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        // Invia il commento alle API di Strive School.
         fetch("https://striveschool-api.herokuapp.com/api/comments", {
             method: "POST",
             headers: {
@@ -28,6 +30,7 @@ const AddComment = ({ asin }) => {
             })
             .then((data) => {
                 console.log("Commento salvato:", data)
+                refreshComments()
             })
             .catch((err) => console.log(err.message))
     }
@@ -48,6 +51,7 @@ const AddComment = ({ asin }) => {
 
             <div className="stars-wrapper">
                 {[1, 2, 3, 4, 5].map((star) => (
+                    // Ogni stella aggiorna il voto del commento.
                     <span className="star"
                         key={star}
                         style={{

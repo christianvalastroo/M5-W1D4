@@ -1,19 +1,29 @@
-
 import MyNav from "./components/MyNav.jsx/MyNav"
 import Welcome from "./components/Welcome/Welcome"
 import AllTheBooks from "./components/AllTheBooks/AllTheBooks"
 import MyFooter from "./components/MyFooter.jsx/MyFooter"
 import "./App.css"
+import { useState } from "react"
 
 const App = () => {
+  const [search, setSearch] = useState("")
+
   return (
     <div className="app-wrapper">
-      <MyNav />
+      {/* Navbar principale del sito. */}
+
+      <MyNav
+        search={search}
+        setSearch={setSearch}
+      />
 
       <main className="main-content">
         <Welcome />
 
-        <AllTheBooks />
+        {/* Lista dei libri con barra di ricerca interna. */}
+        <AllTheBooks
+          search={search}
+        />
       </main>
 
       <MyFooter />

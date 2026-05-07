@@ -30,7 +30,7 @@ const CommentArea = ({ asin }) => {
 
             <CommentsList comments={comments} refreshComments={fetchComments} />
 
-            <AddComment asin={asin} />
+            <AddComment asin={asin} refreshComments={fetchComments} />
             
         </div>
     )

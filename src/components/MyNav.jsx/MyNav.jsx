@@ -1,6 +1,6 @@
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Navbar, Container, Nav, Form } from "react-bootstrap";
 
-const MyNav = () => {
+const MyNav = ({search, setSearch}) => {
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
@@ -10,6 +10,14 @@ const MyNav = () => {
                     <Nav.Link href="#">About</Nav.Link>
                     <Nav.Link href="#">Browse</Nav.Link>
                 </Nav>
+
+                <Form.Control
+                type="search"
+                placeholder="Cerca un libro.."
+                className="ms-3"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                />
             </Container>
         </Navbar>
     )

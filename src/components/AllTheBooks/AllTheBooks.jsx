@@ -1,32 +1,22 @@
 import { Container, Row, Col } from "react-bootstrap"
 import fantasy from "../../books/fantasy.json"
 import SingleBook from "../SingleBook/SingleBook"
-import { useState } from "react"
 import Alert from 'react-bootstrap/Alert';
 
-const AllTheBooks = () => {
+const AllTheBooks = ({search}) => {
 
-    const [search, setSearch] = useState("")
-
+    // Mostra solo i libri che contengono il testo cercato nel titolo.
     const filteredBooks = fantasy.filter((book) =>
         book.title.toLowerCase().includes(search.toLowerCase())
     )
 
     return (
         <Container>
-
-            <input
-                type="text"
-                placeholder="Cerca libro"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="form-control my-4"
-            />
-
             <Row className="g-4">
 
                 {filteredBooks.length > 0 ? (
 
+                    // Crea una card per ogni libro filtrato.
                     filteredBooks.map((book) => (
                         <Col md={3} key={book.asin}>
                             <SingleBook
