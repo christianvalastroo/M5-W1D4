@@ -22,17 +22,67 @@
     color: #f5a623;
 }
 
-.delete-comment-btn {
+.edit-comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.edit-comment-input,
+.edit-comment-select {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.4rem 0.5rem;
+    font-size: 0.85rem;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.delete-comment-btn,
+.edit-comment-btn,
+.save-comment-btn,
+.cancel-comment-btn {
     margin-top: 0.5rem;
     border: none;
     border-radius: 6px;
     padding: 0.4rem 0.7rem;
-    background-color: rgb(233, 25, 25);
     color: white;
     font-size: 0.8rem;
     cursor: pointer;
 }
 
+.delete-comment-btn {
+    background-color: rgb(233, 25, 25);
+}
+
 .delete-comment-btn:hover {
     background-color: #8f1e29;
+}
+
+.edit-comment-btn {
+    background-color: #0d6efd;
+}
+
+.edit-comment-btn:hover {
+    background-color: #0a58ca;
+}
+
+.save-comment-btn {
+    background-color: #198754;
+}
+
+.save-comment-btn:hover {
+    background-color: #146c43;
+}
+
+.cancel-comment-btn {
+    background-color: #6c757d;
+}
+
+.cancel-comment-btn:hover {
+    background-color: #565e64;
 }
