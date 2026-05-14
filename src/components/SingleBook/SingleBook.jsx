@@ -31,16 +31,18 @@ const SingleBook = (props) => {
                     <Card.Text className="mt-auto mb-0 fw-bold text-success">
                         {props.price} €
                     </Card.Text>
+
+                    <Button
+                        as={Link}
+                        to={`/book/${props.asin}`}
+                        variant="primary"
+                        size="sm"
+                    >
+                        Dettaglio
+                    </Button>
+
                 </Card.Body>
 
-                <Button
-                    as={Link}
-                    to={`/book/${props.asin}`}
-                    variant="primary"
-                    size="sm"
-                >
-                    Dettaglio
-                </Button>
 
             </Card>
 

@@ -40,6 +40,10 @@ class CommentArea extends Component {
             })
     }
 
+    componentDidMount() {
+        this.fetchComments()
+    }
+
     componentDidUpdate(prevProps) {
         // Quando cambia il libro selezionato, ricarica le recensioni.
         if (prevProps.selected !== this.props.selected) {

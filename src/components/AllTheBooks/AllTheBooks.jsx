@@ -2,8 +2,8 @@ import { Container, Row, Col } from "react-bootstrap"
 import fantasy from "../../books/fantasy.json"
 import SingleBook from "../SingleBook/SingleBook"
 import Alert from "react-bootstrap/Alert"
-import CommentArea from "../CommentArea/CommentArea"
 import { useState } from "react"
+import "./AllTheBooks.css"
 
 const AllTheBooks = ({ search }) => {
 
@@ -18,48 +18,34 @@ const AllTheBooks = ({ search }) => {
     return (
         <Container>
 
-            <Row>
+            <Row className="g-4">
 
-                {/* LIBRI */}
-                <Col md={8}>
+                {filteredBooks.length > 0 ? (
 
-                    <Row className="g-4">
+                    filteredBooks.map((book) => (
+                        <Col xs={12} sm={6} md={4} lg={3} className="book-grid-col d-flex" key={book.asin}>
 
-                        {filteredBooks.length > 0 ? (
+                            <SingleBook
+                                img={book.img}
+                                title={book.title}
+                                price={book.price}
+                                asin={book.asin}
+                                selected={selected}
+                                setSelected={setSelected}
+                            />
 
-                            filteredBooks.map((book) => (
-                                <Col xs={12} sm={6} md={4} lg={3} className="d-flex" key={book.asin}>
+                        </Col>
+                    ))
 
-                                    <SingleBook
-                                        img={book.img}
-                                        title={book.title}
-                                        price={book.price}
-                                        asin={book.asin}
-                                        selected={selected}
-                                        setSelected={setSelected}
-                                    />
+                ) : (
 
-                                </Col>
-                            ))
+                    <Col className="text-center">
+                        <Alert variant="danger">
+                            Nessun libro trovato per "{search}" 😢
+                        </Alert>
+                    </Col>
 
-                        ) : (
-
-                            <Col className="text-center">
-                                <Alert variant="danger">
-                                    Nessun libro trovato per "{search}" 😢
-                                </Alert>
-                            </Col>
-
-                        )}
-
-                    </Row>
-
-                </Col>
-
-                {/* COMMENTI */}
-                <Col md={4}>
-                    <CommentArea selected={selected} />
-                </Col>
+                )}
 
             </Row>
 

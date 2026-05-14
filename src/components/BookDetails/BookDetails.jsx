@@ -1,9 +1,13 @@
+import { useContext } from "react"
 import { useParams } from "react-router-dom"
 import { Alert, Card, Container } from "react-bootstrap"
 import fantasy from "../../books/fantasy.json"
+import CommentArea from "../CommentArea/CommentArea"
+import { ThemeHome } from "../../context/ThemeHome/ThemeHome"
 
 const BookDetails = () => {
     const { asin } = useParams()
+    const { theme } = useContext(ThemeHome)
     const book = fantasy.find((book) => book.asin === asin)
 
     if (!book) {
@@ -18,7 +22,7 @@ const BookDetails = () => {
         <Container>
             <h1>Dettaglio libro</h1>
 
-            <Card>
+            <Card className={theme === "dark" ? "bg-dark text-light border-secondary" : "bg-light text-dark"}>
                 <Card.Img variant="top" src={book.img} />
                 <Card.Body>
                     <Card.Title>{book.title}</Card.Title>
@@ -27,6 +31,8 @@ const BookDetails = () => {
                     <Card.Text>Codice libro: {book.asin}</Card.Text>
                 </Card.Body>
             </Card>
+
+            <CommentArea selected={book.asin} />
         </Container>
     )
 }
