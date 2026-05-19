@@ -24,4 +24,24 @@ describe("MyNav component", () => {
 
         expect(setSearch).toHaveBeenCalledWith("harry")
     })
+
+    it("should toggle theme button text", () => {
+        const setSearch = vi.fn()
+
+        render(
+            <BrowserRouter>
+                <ThemeProvider>
+                    <MyNav search="" setSearch={setSearch} />
+                </ThemeProvider>
+            </BrowserRouter>
+        )
+
+        const themeButton = screen.getByRole("button", { name: /dark/i })
+
+        expect(themeButton).toBeInTheDocument()
+
+        fireEvent.click(themeButton)
+
+        expect(screen.getByRole("button", { name: /light/i })).toBeInTheDocument()
+    })
 })
