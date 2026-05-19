@@ -55,4 +55,25 @@ describe("SingleBook component", () => {
 
         expect(mockSetSelected).toHaveBeenCalled()
     })
+
+    it("should have the correct link to the detail page", () => {
+        render(
+            <BrowserRouter>
+                <ThemeProvider>
+                    <SingleBook
+                        title="Libro test"
+                        img="https://picsum.photos/200/300"
+                        price={20}
+                        asin="123"
+                        selected={null}
+                        setSelected={() => { }}
+                    />
+                </ThemeProvider>
+            </BrowserRouter>
+        )
+
+        const button = screen.getByRole("button", { name: /dettaglio/i })
+
+        expect(button).toHaveAttribute("href", "/book/123")
+    })
 })
