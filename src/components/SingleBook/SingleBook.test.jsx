@@ -3,6 +3,8 @@ import { BrowserRouter } from "react-router-dom"
 import SingleBook from "./SingleBook"
 import { ThemeProvider } from "../../context/ThemeHome/ThemeHome"
 
+import userEvent from "@testing-library/user-event"
+
 describe("SingleBook component", () => {
     it("should render book data correctly", () => {
         render(
@@ -27,5 +29,30 @@ describe("SingleBook component", () => {
         expect(title).toBeInTheDocument()
         expect(price).toBeInTheDocument()
         expect(button).toBeInTheDocument()
+    })
+
+    it("should call setSelected when clicking the card", async () => {
+        const mockSetSelected = vi.fn()
+
+        render(
+            <BrowserRouter>
+                <ThemeProvider>
+                    <SingleBook
+                        title="Libro test"
+                        img="https://picsum.photos/200/300"
+                        price={20}
+                        asin="123"
+                        selected={null}
+                        setSelected={mockSetSelected}
+                    />
+                </ThemeProvider>
+            </BrowserRouter>
+        )
+
+        const title = screen.getByText("Libro test")
+
+        await userEvent.click(title)
+
+        expect(mockSetSelected).toHaveBeenCalled()
     })
 })
